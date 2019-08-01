@@ -8,6 +8,7 @@ use App\Photo;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
 {
@@ -47,6 +48,7 @@ class AdminUsersController extends Controller
         if (trim($request->password)== ''){
 
             $input = $request->except('password');
+
         }else{
 
             $input = $request->all();
@@ -135,6 +137,8 @@ class AdminUsersController extends Controller
         }
         $user->update($input);
 
+        Session::flash('updated_user', 'User updated');
+
         return redirect('/admin/users');
     }
 
@@ -146,6 +150,19 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if ($user->photo_id){
+            $photoFileName = strstr($user->photo->file, '/images/');
+            unlink(public_path() . $user->photo->file);
+            $photo = Photo::whereId($user->photo_id);
+            $photo->delete();
+        }
+
+        $user->delete();
+
+        Session::flash('deleted_user', 'User Deleted');
+
+        return redirect('/admin/users');
     }
 }

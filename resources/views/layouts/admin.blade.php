@@ -54,10 +54,12 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user fa-fw"></i> {{ Auth::check() ? Auth::user()->name : '' }} <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> Profile</a>
+                    </li>
+                    <li><a href="/admin"><i class="fa fa-user fa-fw"></i> Admin</a>
                     </li>
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
@@ -77,23 +79,34 @@
 
 
 
-{{--        <ul class="nav navbar-nav navbar-right">--}}
+{{--        <ul class="nav navbar-top-links navbar-right">--}}
+
 {{--        @if(auth()->guest())--}}
 {{--        @if(!Request::is('auth/login'))--}}
-{{--        <li><a href="{{ url('/auth/login') }}">Login</a></li>--}}
+{{--                    <li>--}}
+{{--                        <a href="{{ url('/auth/login') }}">Login</a>--}}
+{{--                    </li>--}}
 {{--        @endif--}}
 {{--        @if(!Request::is('auth/register'))--}}
-{{--        <li><a href="{{ url('/auth/register') }}">Register</a></li>--}}
+{{--                <li>--}}
+{{--                    <a href="{{ url('/auth/register') }}">Register</a>--}}
+{{--                </li>--}}
 {{--        @endif--}}
 {{--        @else--}}
-{{--        <li class="dropdown">--}}
-{{--        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ auth()->user()->name }} <span class="caret"></span></a>--}}
-{{--        <ul class="dropdown-menu" role="menu">--}}
-{{--        <li><a href="{{ url('/auth/logout') }}">Logout</a></li>--}}
-
-{{--        <li><a href="{{ url('/admin/profile') }}/{{auth()->user()->id}}">Profile</a></li>--}}
-{{--        </ul>--}}
-{{--        </li>--}}
+{{--            <li class="dropdown">--}}
+{{--                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ auth()->user()->name }}<span class="caret"></span></a>--}}
+{{--            <ul class="dropdown-menu" role="menu">--}}
+{{--                <li>--}}
+{{--                    <a href="{{ url('/admin/profile') }}/{{auth()->user()->id}}"><i class="fa fa-user fa-fw"></i>Profile</a>--}}
+{{--                </li>--}}
+{{--                <li>--}}
+{{--                    <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>--}}
+{{--                </li>--}}
+{{--                <li>--}}
+{{--                    <a href="{{ url('/logout') }}"><i class="fa fa-sign-out fa-fw"></i>Logout</a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+{{--            </li>--}}
 {{--        @endif--}}
 {{--        </ul>--}}
 
@@ -138,11 +151,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/posts">All Posts</a>
+                                <a href="{{url('admin/posts')}}">All Posts</a>
                             </li>
 
                             <li>
-                                <a href="/posts/create">Create Post</a>
+                                <a href="{{url('admin/posts/create')}}">Create Post</a>
                             </li>
 
                         </ul>
@@ -343,7 +356,6 @@
 </div>
 <!-- /#page-wrapper -->
 
-</div>
 <!-- /#wrapper -->
 
 <!-- jQuery -->

@@ -11,8 +11,11 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('landingpage');
 });
 
 Auth::routes();
@@ -25,5 +28,14 @@ Route::get('/admin', function () {
 
 });
 
-Route::resource('admin/users', 'AdminUsersController');
+Route::group(['middleware' => 'admin'], function () {
+
+    Route::resource('admin/users', 'AdminUsersController');
+
+    Route::resource('admin/posts', 'AdminPostsController');
+
+
+});
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
