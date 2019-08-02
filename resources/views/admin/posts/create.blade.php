@@ -31,7 +31,7 @@
             </div>
 
             <div class='form-group'>
-                {!! Form::submit('Create Post', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Create Post', ['class' => 'btn btn-primary col-sm-2']) !!}
             </div>
 
         {!! Form::close() !!}

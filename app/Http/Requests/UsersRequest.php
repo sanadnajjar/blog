@@ -33,4 +33,18 @@ class UsersRequest extends FormRequest
 
         ];
     }
+
+    public function messages()
+    {
+
+        return [
+
+            'name.required' => 'The Name field is required',
+            'email.required' => 'The E-mail field is required',
+            'role_id.required' => 'The Role field is required',
+            'is_active.required' => 'The Status field is required',
+            'password.required' => 'The Password field is required'
+
+        ];
+    }
 }

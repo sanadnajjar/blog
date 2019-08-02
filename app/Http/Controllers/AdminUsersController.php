@@ -68,7 +68,7 @@ class AdminUsersController extends Controller
 
         User::create($input);
 
-
+        Session::flash('user_created', 'User Created');
 
 //        User::create($request->all());
         return redirect('/admin/users');
@@ -137,7 +137,7 @@ class AdminUsersController extends Controller
         }
         $user->update($input);
 
-        Session::flash('updated_user', 'User updated');
+        Session::flash('updated_user', 'User Updated');
 
         return redirect('/admin/users');
     }

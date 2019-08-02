@@ -22,7 +22,7 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('email', 'Email:', ['class' => 'control-label']) !!}
+                {!! Form::label('email', 'E-mail:', ['class' => 'control-label']) !!}
                 {!! Form::text('email', null, ['class' => 'form-control']) !!}
             </div>
 
@@ -53,25 +53,20 @@
             {!! Form::close() !!}
 
 
+{{--            {!! Form::open(['action' => ['AdminUsersController@destroy', $user->id], 'method' => 'DELETE']) !!}--}}
 
-            {!! Form::open(['action' => ['AdminUsersController@destroy', $user->id], 'method' => 'DELETE']) !!}
+{{--                <div class="form-group">--}}
+{{--                    {!! Form::submit('Delete User', ['class' => 'btn btn-danger col-sm-2']) !!}--}}
+{{--                </div>--}}
 
-                <div class="form-group">
-                    {!! Form::submit('Delete User', ['class' => 'btn btn-danger col-sm-2']) !!}
-                </div>
-
-            {!! Form::close() !!}
-
-
+{{--            {!! Form::close() !!}--}}
 
         </div>
     </div>
 
-        <div class="row">
-
-            @include('includes.form-error')
-
-        </div>
+    <div class="row">
+        @include('includes.form-error')
+    </div>
 
 
 @stop

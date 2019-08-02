@@ -5,6 +5,8 @@
 
     <h1>Create Users</h1>
 
+    <div class="row">
+
     {!! Form::open(['action' => 'AdminUsersController@store', 'method' => 'post', 'files' => true]) !!}
 
     <div class="form-group">
@@ -13,7 +15,7 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('email', 'Email:', ['class' => 'control-label']) !!}
+        {!! Form::label('email', 'E-mail:', ['class' => 'control-label']) !!}
         {!! Form::text('email', null, ['class' => 'form-control']) !!}
     </div>
 
@@ -38,11 +40,15 @@
     </div>
 
     <div class="form-group">
-        {!! Form::submit('Create User', ['class' => 'btn btn-primary']) !!}
+        {!! Form::submit('Create User', ['class' => 'btn btn-primary col-sm-2']) !!}
     </div>
 
     {!! Form::close() !!}
 
-    @include('includes.form-error')
+    </div>
+
+    <div class="row">
+        @include('includes.form-error')
+    </div>
 
 @stop
