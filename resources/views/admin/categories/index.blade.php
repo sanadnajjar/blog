@@ -37,7 +37,8 @@
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Created date</th>
+                <th>Created at</th>
+                <th>Updated at</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -49,6 +50,7 @@
               <tr>
                 <td>{{$category->name}}</td>
                 <td>{{$category->created_at ? $category->created_at->diffForHumans() : 'No date'}}</td>
+                <td>{{$category->updated_at ? $category->updated_at->diffForHumans() : 'No Date'}}</td>
                 <td><a href="{{url('admin/categories/' . $category->id . '/edit')}}"><button type="button" class="btn btn-primary">Edit</button></a></td>
                 <td>
                     {!! Form::open(['action' => ['AdminCategoriesController@destroy', $category->id], 'method' => 'DELETE']) !!}
