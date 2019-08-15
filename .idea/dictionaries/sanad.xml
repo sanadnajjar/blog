@@ -2,11 +2,14 @@
   <dictionary name="sanad">
     <words>
       <w>bcrypt</w>
+      <w>ckeditor</w>
       <w>fillable</w>
       <w>landingpage</w>
       <w>metis</w>
       <w>navbar</w>
       <w>opps</w>
+      <w>sluggable</w>
+      <w>tinyeditor</w>
       <w>uncategorized</w>
     </words>
   </dictionary>

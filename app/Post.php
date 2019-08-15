@@ -2,10 +2,31 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    use Sluggable;
+    use SluggableScopeHelpers;
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+                'separator' => '-',
+                'includeTrashed' => true,
+            ]
+        ];
+    }
+
     protected $fillable = [
 
         'category_id',
@@ -13,6 +34,8 @@ class Post extends Model
         'title',
         'body',
     ];
+
+    protected $primaryKey = 'id';
 
     public function user(){
 
@@ -28,4 +51,10 @@ class Post extends Model
 
         return $this->belongsTo('App\Category');
     }
+
+    public function comments(){
+
+        return $this->hasMany('App\Comment');
+    }
+
 }

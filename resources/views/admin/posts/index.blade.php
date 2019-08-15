@@ -30,8 +30,6 @@
             <th>Body</th>
             <th>Created</th>
             <th>Updated</th>
-            <th></th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -44,9 +42,11 @@
                         <td>{{$post->user->name}}</td>
                         <td>{{$post->category ? $post->category->name : "Uncategorized"}}</td>
                         <td>{{$post->title}}</td>
-                        <td>{{$post->body}}</td>
+                        <td>{{\Illuminate\Support\Str::words($post->body, 1)}}</td>
                         <td>{{$post->created_at->diffForHumans()}}</td>
                         <td>{{$post->updated_at->diffForHumans()}}</td>
+                        <td><a href="{{url('/post', $post->slug)}}"><button type="button" class="btn btn-info btn-sm m-0">View Post</button></a></td>
+                        <td><a href="{{url('/admin/comments/' . $post->id)}}"><button type="button" class="btn btn-info btn-sm m-0">View Comments</button></a></td>
                         <td><a href="{{url('admin/posts/' . $post->id . '/edit')}}"><button type="button" class="btn btn-primary btn-sm m-0">Edit</button></a></td>
                         <td>
                             {!! Form::open(['action' => ['AdminPostsController@destroy', $post->id], 'method' => 'DELETE']) !!}
@@ -64,5 +64,11 @@
 
         </tbody>
       </table>
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-5">
+            {{$posts->render()}}
+        </div>
+    </div>
 
 @stop

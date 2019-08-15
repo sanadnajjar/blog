@@ -157,6 +157,10 @@
                                 <a href="{{url('admin/posts/create')}}">Create Post</a>
                             </li>
 
+                            <li>
+                                <a href="{{url('admin/comments')}}">All Comments</a>
+                            </li>
+
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -349,9 +353,7 @@
 @yield('scripts')
 
 
-
-
-
 </body>
+
 
 </html>
