@@ -1,6 +1,10 @@
-@extends('layouts.blog-post')
+@extends('layouts.blog-home')
 
 @section('content')
+
+    <div class="row">
+
+        <div class="col-md-8">
 
     <!-- Blog Post -->
 
@@ -9,7 +13,7 @@
 
     <!-- Author -->
     <p class="lead">
-        by <a href="#">{{$post->user->name}}</a>
+        by {{$post->user->name}}
     </p>
 
     <hr>
@@ -20,7 +24,7 @@
     <hr>
 
     <!-- Preview Image -->
-    <img class="img-responsive" src="{{$post->photo->file}}" alt="">
+    <img class="img-responsive" src="{{$post->photo ? $post->photo->file : $post->photoPlaceholder()}}" alt="">
 
     <hr>
 
@@ -30,9 +34,6 @@
 
     <hr>
 
-    @if (Session::has('comment_posted'))
-        <p class="alert alert-success">{{session('comment_posted')}}</p>
-    @endif
 
     <!-- Blog Comments -->
 
@@ -158,6 +159,11 @@
         @endforeach
     @endif
 
+        </div><!--col-md-8-->
+
+        @include('includes.home_side_nav')
+
+    </div> <!--ROW-->
 
 @stop
 
@@ -172,3 +178,5 @@
     </script>
 
 @stop
+
+

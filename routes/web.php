@@ -14,23 +14,16 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-Route::get('/', function () {
-    return view('landingpage');
-});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index');
 
-Route::get('/post/{id}', ['as' => 'home.post', 'uses' => 'AdminPostsController@posts']);
+Route::get('/post/{id}', ['as' => 'home.post', 'uses' => 'HomeController@posts']);
 
 Route::group(['middleware' => 'admin'], function () {
 
-    Route::get('/admin', function () {
-
-        return view('admin.index');
-
-    });
+    Route::get('/admin', 'AdminController@index');
 
     Route::resource('admin/users', 'AdminUsersController');
 

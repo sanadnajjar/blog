@@ -18,7 +18,7 @@ class PostsCommentsController extends Controller
     public function index()
     {
 
-        $comments = Comment::paginate(2);
+        $comments = Comment::paginate(10);
 
         return view('admin.comments.index', compact('comments'));
     }
@@ -47,14 +47,14 @@ class PostsCommentsController extends Controller
             'post_id' => $request->post_id,
             'author' => $user->name,
             'email' => $user->email,
-            'photo' => $user->photo->file,
+            'photo' => $user->photo ? $user->photo->file: '',
             'body' => $request->body
         ];
 
 
         Comment::create($data);
 
-        $request->session()->flash('comment_posted', 'Comment submitted waiting for Admin approval');
+        $request->session()->flash('comment_posted', 'Comment submitted and is waiting moderation.');
 
         return redirect()->back();
     }

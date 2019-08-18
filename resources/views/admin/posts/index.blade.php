@@ -24,10 +24,9 @@
         <thead>
           <tr>
             <th>Photo</th>
+            <th>Title</th>
             <th>Author</th>
             <th>Category</th>
-            <th>Title</th>
-            <th>Body</th>
             <th>Created</th>
             <th>Updated</th>
           </tr>
@@ -39,10 +38,9 @@
                 @foreach($posts as $post)
                     <tr>
                         <td class="text-center"><img height="50" src="{{$post->photo ? $post->photo->file : 'http://placehold.it/400x400'}}" alt="Post Image"></td>
+                        <td>{{$post->title}}</td>
                         <td>{{$post->user->name}}</td>
                         <td>{{$post->category ? $post->category->name : "Uncategorized"}}</td>
-                        <td>{{$post->title}}</td>
-                        <td>{{\Illuminate\Support\Str::words($post->body, 1)}}</td>
                         <td>{{$post->created_at->diffForHumans()}}</td>
                         <td>{{$post->updated_at->diffForHumans()}}</td>
                         <td><a href="{{url('/post', $post->slug)}}"><button type="button" class="btn btn-info btn-sm m-0">View Post</button></a></td>
